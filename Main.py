@@ -1,6 +1,6 @@
 """
 File: main.py
-Description: <A brief description of this Python module.>
+Description: <Assignment 1 Basic OOP.>
 Author: <Prince Gautam>
 ID: <110351192>
 Username: <GAUPY005>
