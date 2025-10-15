@@ -41,5 +41,19 @@ class Rig:
         if self._damage >= 2:
             self._broken = True
 
+    # this just tries to repair the rig back to normal
+    def repair(self):
+        if self._broken == True:
+            self._damage = 0
+            self._broken = False
+            print(self._name + " rig repaired.")
+        else:
+            print(self._name + " No repair required.")
 
+    # this just prints out how the rig is doing
+    def __str__(self):
+        if self._broken == True:
+            return self._name + " - Broken (Damage: " + str(self._damage) + ")"
+        else:
+            return self._name + " - Working (Damage: " + str(self._damage) + ")"
 
