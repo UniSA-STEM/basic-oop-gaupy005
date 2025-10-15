@@ -38,6 +38,16 @@ class Asset:
     def decrypt(self):
         self._encrypted = False
 
+    # this just shows if it's encrypted or not
+    def __str__(self):
+        if self._encrypted == True:
+            return self._name + " : " + self._description + " [Encrypted]"
+        else:
+            return self._name + " : " + self._description
+
+
+
+
 
 
 
