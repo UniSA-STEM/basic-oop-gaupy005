@@ -7,12 +7,16 @@ Username: <GAUPY005>
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
 
+
+from Asset import Asset
+from Rig import Rig
 class Hacker:
+
     # this creates a hacker with a name, trace level, rigCount and inventory
     def __init__(self, name):
         self.__name = name
         self.__trace_level = 0
-        self.__inventory = []
+        self.__inventory = [Asset("CryptoToken", "Used to acquire or repair rigs")]
         self.__rigCount = None
 
     # getter and setter for name
@@ -30,7 +34,34 @@ class Hacker:
     def get_rigCount(self):
         return self.__rigCount
 
-# this just adds an asset to the hacker's inventory
+    # this just adds an asset to the hacker's inventory
     def add_asset(self, asset):
         self.__inventory.append(asset)
         print(asset.get_name() + " added to " + self.__name + "'s inventory.")
+
+
+    # this just lets the hacker acquire a rig using one CryptoToken
+    def acquire_rig(self, rig=None):
+        # check if hacker already has a rig
+        if self.__rigCount is not None:
+            print(self.__name + " already owns a rig.")
+            return
+
+    # This looks for a CryptoToken in the inventory
+        for asset in self.__inventory:
+            if asset.get_name().lower() == "cryptotoken":
+                # spend the token to obtain a rig
+                self.__inventory.remove(asset)
+
+                # create a rig if none was passed in
+                if rig is None:
+                    rig = Rig(self.__name + "'s Rig")
+
+                # assign the rig to rigCount
+                self.__rigCount = rig
+                print(self.__name + " has acquired a new rig: " + rig.get_name())
+                return
+
+        # if we finished the loop without returning, then no token was found
+        print(self.__name + " does not own a CryptoToken.")
+
