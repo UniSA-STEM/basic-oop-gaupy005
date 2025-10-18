@@ -11,41 +11,45 @@ This is my own work as defined by the University's Academic Misconduct Policy.
 class Asset:
     # this makes an asset which has a name, description and encryption
     def __init__(self, name, description):
-        self._name = name
-        self._description = description
-        self._encrypted = False
+        self.__name = name
+        self.__description = description
+        self.__encrypted = False
 
     # getter and setter for name
     def get_name(self):
-        return self._name
+        return self.__name
 
     def set_name(self, new_name):
-        self._name = new_name
+        self.__name = new_name
 
     # getter used for description
     def get_description(self):
-        return self._description
+        return self.__description
 
     # getter to show encryption status
     def is_encrypted(self):
-        return self._encrypted
+        return self.__encrypted
 
     # this will make it encrypted
     def encrypt(self):
-        self._encrypted = True
+        self.__encrypted = True
 
     # this will turn off encryption
     def decrypt(self):
-        self._encrypted = False
+        self.__encrypted = False
 
     # this just shows if it's encrypted or not
     def __str__(self):
-        if self._encrypted == True:
-            return self._name + " : " + self._description + " [Encrypted]"
+        if self.__encrypted == True:
+            return self.__name + " : " + self.__description + " [Encrypted]"
         else:
-            return self._name + " : " + self._description
+            return self.__name + " : " + self.__description
 
-    #
+asset1 = Asset("CryptoToken", "Use to acquire or repair rigs")
+print(asset1)
+asset1.encrypt()
+print(asset1)
+
 
 
 
