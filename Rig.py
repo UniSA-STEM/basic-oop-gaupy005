@@ -50,12 +50,28 @@ class Rig:
         else:
             print(self.__name + " No repair required.")
 
+    # this just upgrades the rig using a hardware patch
+    def upgrade(self):
+            self.__upgrade_level += 1
+            print(self.__name + " upgraded to level " + str(self.__upgrade_level))
+
+    # this just shows the rig condition
+    def get_condition(self):
+            if self.__broken == True:
+                status = "Broken"
+            else:
+                status = "Pristine"
+            return status + " (Level " + str(self.__upgrade_level) + ")"
+
     # this just prints out how the rig is doing
     def __str__(self):
         if self.__broken == True:
             return self.__name + " - Broken (Damage: " + str(self.__damage) + ")"
         else:
             return self.__name + " - Working (Damage: " + str(self.__damage) + ")"
+
+
+# Testing
 
 rig1 = Rig("Rig1")
 print(rig1)
