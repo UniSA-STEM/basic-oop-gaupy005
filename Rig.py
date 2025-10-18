@@ -6,14 +6,21 @@ ID: <110351192>
 Username: <GAUPY005>
 This is my own work as defined by the University's Academic Misconduct Policy.
 """
-
+from Asset import Asset
 class Rig:
     # this makes a rig and sets up some starting values
     def __init__(self, name):
         self.__name = name
         self.__damage = 0
         self.__broken = False
+        self.__storage = [
+        self.__storage = [
+        Asset("Data Spike", "Used in battles"),
+        Asset("Data Spike", "Used in battles"),
+        Asset("Removable Drive", "Used for extraction")
+        ]
         self.__upgrade_level = 0
+        self.__capacity = 5
 
     # getter and setter for name
     def get_name(self):
@@ -53,7 +60,32 @@ class Rig:
     # this just upgrades the rig using a hardware patch
     def upgrade(self):
             self.__upgrade_level += 1
+            self.__capacity += 1
             print(self.__name + " upgraded to level " + str(self.__upgrade_level))
+
+    # this just returns the list of stored assets
+    def get_storage(self):
+        return self.__storage
+
+    # this just adds an asset to storage if there is space
+    def store_asset(self, asset):
+        if len(self.__storage) >= self.__capacity:
+            print(self.__name + " storage is full.")
+        else:
+            self.__storage.append(asset)
+            print(asset.get_name() + " stored in " + self.__name)
+
+    # this just releases an asset by name if not encrypted
+    def release_asset(self, asset_name):
+        for item in self.__storage:
+            if item.get_name().lower() == asset_name.lower():
+                if item.is_encrypted() == True:
+                    print(item.get_name() + " is encrypted and cannot be moved.")
+
+                self.__storage.remove(item)
+                print(item.get_name() + " released from " + self.__name)
+                return item
+        print(asset_name + " not found in storage.")
 
     # this just shows the rig condition
     def get_condition(self):
@@ -75,6 +107,7 @@ class Rig:
 
 rig1 = Rig("Rig1")
 print(rig1)
+
 
 rig1.get_name()
 rig1.get_damage()
