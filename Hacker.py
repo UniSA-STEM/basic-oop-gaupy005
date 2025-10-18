@@ -65,3 +65,41 @@ class Hacker:
         # if we finished the loop without returning, then no token was found
         print(self.__name + " does not own a CryptoToken.")
 
+    # this just increases the hacker's trace level by an amount
+    def increase_trace(self, amount):
+        self.__trace_level = self.__trace_level + amount
+        print(self.__name + "'s trace level increased by " + str(amount))
+
+    # this just decreases the hacker's trace level by an amount
+    def decrease_trace(self, amount):
+        self.__trace_level = self.__trace_level - amount
+
+        # Trace level do not go below 0
+        if self.__trace_level < 0:
+            self.__trace_level = 0
+        print(self.__name + "'s trace level decreased by " + str(amount))
+
+    # this just upgrades the hacker's rig using a Hardware Patch
+    def upgrade_rig(self):
+        # this checks if hacker has a rig
+        if self.__rigCount is None:
+            print(self.__name + " does not have a rig to upgrade.")
+            return
+
+        # To look for a Hardware Patch in the inventory
+        for asset in self.__inventory:
+            if asset.get_name().lower() == "hardware patch":
+                # To use the patch
+                self.__inventory.remove(asset)
+
+                # To upgrade the rig
+                self.__rigCount.upgrade()
+                print(self.__name + " used a Hardware Patch to upgrade their rig.")
+                return
+
+        # if no patch found
+        print(self.__name + " does not have a Hardware Patch.")
+
+
+
+
