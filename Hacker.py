@@ -108,6 +108,13 @@ class Hacker:
                 return asset
         return None
 
+    # this just stores an asset from hacker inventory into the rig
+    def store_to_rig(self, asset_name):
+        if self.__rigCount is None:
+            print(self.__name + " has no rig to store items in.")
+            return
+
+
 
 
 
