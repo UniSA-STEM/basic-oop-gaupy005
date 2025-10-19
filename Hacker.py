@@ -86,7 +86,7 @@ class Hacker:
             print(self.__name + " does not have a rig to upgrade.")
             return
 
-        # To look for a Hardware Patch in the inventory
+    # To look for a Hardware Patch in the inventory
         for asset in self.__inventory:
             if asset.get_name().lower() == "hardware patch":
                 # To use the patch
@@ -97,12 +97,39 @@ class Hacker:
                 print(self.__name + " used a Hardware Patch to upgrade their rig.")
                 return
 
-        # if no patch found
+    # if no patch found
         print(self.__name + " does not have a Hardware Patch.")
 
+    # this just searches the hacker inventory for an asset by name and returns it (removes it)
+    def scan_inventory(self, asset_name):
+        for asset in self.__inventory:
+            if asset.get_name().lower() == asset_name.lower():
+                self.__inventory.remove(asset)
+                return asset
+            return None
 
+    # this just stores an asset from hacker inventory into the rig
+    def store_to_rig(self, asset_name):
+        if self.__rigCount is None:
+            print(self.__name + " has no rig to store items in.")
+            return
 
+        # find the asset in hacker's inventory
+        for asset in self.__inventory:
+            if asset.get_name().lower() == asset_name.lower():
+                if asset.is_encrypted():
+                    print(asset.get_name() + " is encrypted and cannot be stored.")
+                    return
 
+                # try to store the asset
+                if len(self.__rigCount.get_storage()) < 5:  # assuming capacity is 5
+                    self.__rigCount.store_asset(asset)
+                    self.__inventory.remove(asset)
+                else:
+                    print(self.__name + "'s rig storage is full.")
+                return
+
+        print(asset_name + " not found in inventory.")
 
 
 
