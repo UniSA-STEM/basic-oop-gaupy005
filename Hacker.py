@@ -114,7 +114,7 @@ class Hacker:
             print(self.__name + " has no rig to store items in.")
             return
 
-        # this to find the asset in hacker's inventory
+# this to find the asset in hacker's inventory
         for asset in self.__inventory:
             if asset.get_name().lower() == asset_name.lower():
                 if asset.is_encrypted():
