@@ -131,5 +131,19 @@ class Hacker:
 
         print(asset_name + " not found in inventory.")
 
+    # this just retrieves an asset from the hacker's rig storage into inventory
+    def retrieve_from_rig(self, asset_name):
+        if self.__rigCount is None:
+            print(self.__name + " has no rig to retrieve items from.")
+            return
+        # ask rig to release the asset (rig will check encryption)
+        item = self.__rigCount.release_asset(asset_name)
+        if item is not None:
+            self.__inventory.append(item)
+
+
+
+
+
 
 
