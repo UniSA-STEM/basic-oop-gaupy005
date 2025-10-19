@@ -159,6 +159,34 @@ class Hacker:
         print(self.__name + " has no Data Spike to launch an attack.")
 
 
+# this just extracts unencrypted assets from a broken rig
+    def extract_assets(self, target_rig):
+        if target_rig is None:
+            print("No target rig specified.")
+            return
+        if target_rig.is_broken() == False:
+            print(target_rig.get_name() + " is not broken; cannot extract assets.")
+            return
+        # This finds Removable Drive in inventory
+        for asset in self.__inventory:
+            if asset.get_name().lower() == "removable drive":
+                # consume the drive
+                self.__inventory.remove(asset)
+                # transfer all unencrypted items from rig to hacker
+                storage = list(target_rig.get_storage())
+                for item in storage:
+                    if item.is_encrypted() == False:
+                        removed = target_rig.release_asset(item.get_name())
+                        if removed is not None:
+                            self.__inventory.append(removed)
+                print(self.__name + " extracted unencrypted assets from " + target_rig.get_name())
+                return
+        print(self.__name + " has no Removable Drive to extract assets.")
+
+
+
+
+
 
 
 
