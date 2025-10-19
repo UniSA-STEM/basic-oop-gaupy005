@@ -142,6 +142,21 @@ class Hacker:
             self.__inventory.append(item)
 
 
+    # this just launches an attack on a target rig using a Data Spike from hacker inventory
+    def launch_attack(self, target_rig):
+        # ensure target rig exists
+        if target_rig is None:
+            print("No target rig specified.")
+            return
+        # find a Data Spike in inventory
+        for asset in self.__inventory:
+            if asset.get_name().lower() == "data spike":
+                # consume spike and damage target
+                self.__inventory.remove(asset)
+                target_rig.take_hit()
+                print(self.__name + " launched a Data Spike at " + target_rig.get_name())
+                return
+        print(self.__name + " has no Data Spike to launch an attack.")
 
 
 
