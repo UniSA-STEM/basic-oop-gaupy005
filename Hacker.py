@@ -108,6 +108,31 @@ class Hacker:
                 return asset
         return None
 
+    # this just stores an asset from hacker inventory into the rig
+    def store_to_rig(self, asset_name):
+        if self.__rigCount is None:
+            print(self.__name + " has no rig to store items in.")
+            return
+
+        # this to find the asset in hacker's inventory
+        for asset in self.__inventory:
+            if asset.get_name().lower() == asset_name.lower():
+                if asset.is_encrypted():
+                    print(asset.get_name() + " is encrypted and cannot be stored.")
+                    return
+
+                # to store the asset
+                if len(self.__rigCount.get_storage()) < 5:  # assuming capacity is 5
+                    self.__rigCount.store_asset(asset)
+                    self.__inventory.remove(asset)
+                else:
+                    print(self.__name + "'s rig storage is full.")
+                return
+
+        print(asset_name + " not found in inventory.")
+
+
+
 
 
 
