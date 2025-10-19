@@ -100,13 +100,6 @@ class Hacker:
         # if no patch found
         print(self.__name + " does not have a Hardware Patch.")
 
-        # this just searches the hacker inventory for an asset by name and returns it (removes it)
-    def scan_inventory(self, asset_name):
-        for asset in self.__inventory:
-            if asset.get_name().lower() == asset_name.lower():
-                self.__inventory.remove(asset)
-                return asset
-        return None
 
 
 
