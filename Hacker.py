@@ -183,6 +183,30 @@ class Hacker:
                 return
         print(self.__name + " has no Removable Drive to extract assets.")
 
+# this just looks for a Security Chip and uses it to encrypt one asset
+    def encrypt_asset(self, asset_name):
+        chip = None
+        target_asset = None
+
+        # find both chip and target in one loop
+        for asset in self.__inventory:
+            name = asset.get_name().lower()
+            if name == "security chip":
+                chip = asset
+            elif name == asset_name.lower():
+                target_asset = asset
+
+        if chip is None:
+            print(self.__name + " has no Security Chip to encrypt assets.")
+        elif target_asset is None:
+            print(asset_name + " not found in inventory.")
+        else:
+            target_asset.encrypt()
+            self.__inventory.remove(chip)
+            print(target_asset.get_name() + " encrypted.")
+
+
+
 
 
 
