@@ -45,6 +45,10 @@ class Asset:
         else:
             return self.__name + " : " + self.__description
 
+
+
+
+
 asset1 = Asset("CryptoToken", "Use to acquire or repair rigs")
 print(asset1)
 asset1.encrypt()
