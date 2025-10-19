@@ -14,7 +14,6 @@ class Rig:
         self.__damage = 0
         self.__broken = False
         self.__storage = [
-        self.__storage = [
         Asset("Data Spike", "Used in battles"),
         Asset("Data Spike", "Used in battles"),
         Asset("Removable Drive", "Used for extraction")
@@ -81,11 +80,13 @@ class Rig:
             if item.get_name().lower() == asset_name.lower():
                 if item.is_encrypted() == True:
                     print(item.get_name() + " is encrypted and cannot be moved.")
+                    return None
 
                 self.__storage.remove(item)
                 print(item.get_name() + " released from " + self.__name)
                 return item
         print(asset_name + " not found in storage.")
+        return None
 
     # this just shows the rig condition
     def get_condition(self):
@@ -101,14 +102,3 @@ class Rig:
             return self.__name + " - Broken (Damage: " + str(self.__damage) + ")"
         else:
             return self.__name + " - Working (Damage: " + str(self.__damage) + ")"
-
-
-# Testing
-
-rig1 = Rig("Rig1")
-print(rig1)
-
-
-rig1.get_name()
-rig1.get_damage()
-print(rig1)
