@@ -46,16 +46,16 @@ print()
 
 # This stores an unencrypted asset into hacker's rig and retrieves it
 print("=== Store and retrieve asset ===")
-h.add_asset(Asset("Report", "Stolen file"))
-h.store_to_rig("Report")
-h.retrieve_from_rig("Report")
+h.add_asset(Asset("Security Chip", "Used to encrypt or decrypt assets"))
+h.store_to_rig("Security Chip")
+h.retrieve_from_rig("Security Chip")
 print()
 
 # This Encrypts an asset which will require a Security Chip
 print("=== Encrypt asset ===")
-h.add_asset(Asset("Secret.txt", "Sensitive"))
+h.add_asset(Asset("Hardware Patch", "Used to upgrade rigs"))
 h.add_asset(Asset("Security Chip", "Used to encrypt/decrypt"))
-h.encrypt_asset("Secret.txt")
+h.encrypt_asset("Hardware Patch")
 print()
 
 # This here is a test extraction from a broken rig
@@ -65,11 +65,11 @@ target = Rig("OldRig")
 
 
 # This puts a cleared asset into target, and an encrypted one to test filtering
-target.store_asset(Asset("Notes", "Important"))
-enc = Asset("LockedDoc", "Encrypted doc")
+target.store_asset(Asset("Removable Drive", "Found in rigs and used for extraction"))
+enc = Asset("Data Spike", "Used in battles")
 enc.encrypt()
 target.store_asset(enc)
-# Break the rig (two hits)
+# Break the rig in two hits
 target.take_hit()
 target.take_hit()
 
@@ -82,7 +82,7 @@ h.extract_assets(target)
 
 # This shows the hacker’s inventory after extraction
 print("Hacker inventory after extraction:")
-for item in h._Hacker__inventory:   # (just for testing)
+for item in h._Hacker__inventory:
     print("-", item.get_name())
 
 print("\n=== Tests finished ===")
